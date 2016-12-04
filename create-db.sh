@@ -1,0 +1,17 @@
+#!/bin/bash
+
+### Pre-condition: your mysql client package must be installed.
+
+### Create a MySQL/MariaDB database for a given service.
+# Inputs:
+DB_SERVER_HOST=$1
+DB_SERVER_PORT=$2
+DB_SERVER_ROOT_PWD=$3
+DB_NAME=$4
+DB_USER=$5
+DB_USER_PWD=$6
+
+mysql -h $DB_SERVER_HOST -P $DB_SERVER_PORT -u root -p$DB_SERVER_ROOT_PWD -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
+mysql -h $DB_SERVER_HOST -P $DB_SERVER_PORT -u root -p$DB_SERVER_ROOT_PWD -e "CREATE USER $DB_USER IDENTIFIED BY '$DB_USER_PWD';"
+mysql -h $DB_SERVER_HOST -P $DB_SERVER_PORT -u root -p$DB_SERVER_ROOT_PWD -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO $DB_USER WITH GRANT OPTION;"
+mysql -h $DB_SERVER_HOST -P $DB_SERVER_PORT -u root -p$DB_SERVER_ROOT_PWD -e "FLUSH PRIVILEGES;"

@@ -1,2 +1,2 @@
 # self-hosting-containers
-Docker containers for self hostin 
+Set of Dockerfile for self hosting
