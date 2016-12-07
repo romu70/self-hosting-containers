@@ -12,8 +12,8 @@ You can find 2 scripts (create-db.sh and delete-sb.sh) at the root of this repsi
 
 Here is a list of services I run:
 
-## [Wallabag](https://www.wallabag.org/)
+[Wallabag](https://www.wallabag.org/)
 
-## [Pydio](https://www.pydio.com/)
+[Pydio](https://www.pydio.com/)
 
 
