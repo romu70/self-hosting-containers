@@ -34,11 +34,11 @@ First, you must create a database, and a good idea could be to use the *create-d
 
 Then, you can run the container by running:
 
-```docker run --name pydio -v _host files folder_:/var/www/pydio-core/data/files -v _host personal folder_:/var/www/pydio-core/data/personal -d -p _port_:80 pydio:latest```
+```docker run --name pydio -v #host files folder#:/var/www/pydio-core/data/files -v #host personal folder#:/var/www/pydio-core/data/personal -d -p #port#:80 pydio:latest```
 
-_host files folder_ must be an absolute path of the location where common files will be stored
-_host personal folder_ must be an absolute path of the location where personal files (per user account) will be stored
-_port_: the port to expose Pydio on your host
+#host files folder# must be an absolute path of the location where common files will be stored
+#host personal folder# must be an absolute path of the location where personal files (per user account) will be stored
+#port#: the port to expose Pydio on your host
 
 But but but, this is not terminated. As time of writing, there is a small issue which prevents storage to work, it is related to access rights and folder ownership. Here are the instructions to fix it.
 
