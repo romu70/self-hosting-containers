@@ -15,15 +15,8 @@ RUN echo "Europe/Paris" > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
 
 # ------------------------------------------------------------------------------
-# Install Base
-# Add ppa for PHP, ubuntu 16.04 has php7 yeah :)
-#RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" >> /etc/apt/sources.list
-#RUN echo "deb-src http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" >> /etc/apt/sources.list
-#RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E5267A6C
-
 RUN apt-get update -qq
 RUN apt-get install debconf-utils
-#RUN debconf-get-selections | grep mysql
 RUN apt-get install -yq wget unzip nginx fontconfig-config fonts-dejavu-core \
     php7.0-fpm php7.0-common php7.0-json php7.0-cli php7.0-common php7.0-mysql\
     php7.0-gd php7.0-json php7.0-mcrypt php7.0-readline php7.0-intl php7.0-xml php-apcu\
@@ -53,8 +46,6 @@ RUN sed -i -e"s/keepalive_timeout\s*65/keepalive_timeout 2/" /etc/nginx/nginx.co
 RUN sed -i -e"s/keepalive_timeout 2/keepalive_timeout 2;\n\tclient_max_body_size 100m/" /etc/nginx/nginx.conf
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 ADD conf/pydio /etc/nginx/sites-enabled/
-#RUN mkdir -p /etc/nginx/ssl
-#RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt -subj '/CN=localhost/O=My Company Name LTD./C=US'
 
 # ------------------------------------------------------------------------------
 # Install & Configure ioncube
@@ -74,29 +65,23 @@ RUN update-rc.d php7.0-fpm defaults
 # ------------------------------------------------------------------------------
 # Install Pydio
 ENV PYDIO_VERSION 7.0.2
-#ENV WORKDIR /var/www
 
 RUN wget https://download.pydio.com/pub/core/archives/pydio-core-${PYDIO_VERSION}.zip
 RUN unzip pydio-core-${PYDIO_VERSION}.zip
 RUN mv pydio-core-${PYDIO_VERSION} /var/www/pydio-core
 RUN chown -R www-data:www-data /var/www/pydio-core
 RUN chmod -R 770 /var/www/pydio-core
-RUN chmod 777  /var/www/pydio-core/data/files/
-RUN chmod 777  /var/www/pydio-core/data/personal/
-
-WORKDIR /
-RUN ln -s /var/www/pydio-core/data pydio-data
+RUN chmod -R 777 /var/www/pydio-core/data/files/ /var/www/pydio-core/data/personal/
 
 # ------------------------------------------------------------------------------
 # Expose ports.
 EXPOSE 80
-#EXPOSE 443
 EXPOSE 8090
 
 # ------------------------------------------------------------------------------
 # Expose volumes
-VOLUME /pydio-data/files
-VOLUME /pydio-data/personal
+VOLUME /var/www/pydio-core/data/files
+VOLUME /var/www/pydio-core/data/personal
 
 # ------------------------------------------------------------------------------
 # Add supervisord conf
