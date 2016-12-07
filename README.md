@@ -44,22 +44,22 @@ Then, you can run the container by running:
 
 But but but, this is not terminated. As time of writing, there is a small issue which prevents storage to work, it is related to access rights and folder ownership. Here are the instructions to fix it.
 
-1. Open a terminal inside your container
+* Open a terminal inside your container
 
 ```docker exec -t -i pydio /bin/bash```
 
-2. Go to the Pydio data folder
+* Go to the Pydio data folder
 
 ```cd /var/www/pydio-core/data```
 
-3. Fix storages permissions
+* Fix storages permissions
 
 ```chmod 770 -R files/ personal/```
 
-4. Fix ownership
+* Fix ownership
 
 ```chown www-data:www-data -R files/ personal/```
 
 ### Complete the Pydio setup ###
 
-Open your web browser to: ```http://_your host address_:4100``` and follow the instructions. Enjoy!
+Open your web browser to: ```http://_your host address_:_port_``` and follow the instructions. Enjoy!
