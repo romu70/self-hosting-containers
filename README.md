@@ -14,6 +14,8 @@ Here is a list of services I run:
 
 [Wallabag](https://www.wallabag.org/)
 
+[Miniflux](https://www.miniflux.net/)
+
 [Pydio](https://www.pydio.com/)
 
 
