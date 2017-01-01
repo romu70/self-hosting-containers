@@ -64,7 +64,7 @@ RUN update-rc.d php7.0-fpm defaults
 
 # ------------------------------------------------------------------------------
 # Install Pydio
-ENV PYDIO_VERSION 7.0.2
+ENV PYDIO_VERSION 7.0.3
 
 RUN wget https://download.pydio.com/pub/core/archives/pydio-core-${PYDIO_VERSION}.zip
 RUN unzip pydio-core-${PYDIO_VERSION}.zip
@@ -76,7 +76,6 @@ RUN chmod -R 777 /var/www/pydio-core/data/files/ /var/www/pydio-core/data/person
 # ------------------------------------------------------------------------------
 # Expose ports.
 EXPOSE 80
-EXPOSE 8090
 
 # ------------------------------------------------------------------------------
 # Expose volumes
