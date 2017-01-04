@@ -59,7 +59,7 @@ RUN mv tt-rss/* /var/www
 # ------------------------------------------------------------------------------
 # Install Wallabag v2 plugin: https://github.com/joshp23/ttrss-to-wallabag-v2
 RUN git clone --depth 1 https://github.com/joshp23/ttrss-to-wallabag-v2
-RUN mv ttrss-to-wallabag-v2/wallabag_v2 /var/www/plugins/
+RUN mv ttrss-to-wallabag-v2/wallabag_v2 /var/www/plugins.local/
 
 # ------------------------------------------------------------------------------
 # Install https://github.com/naeramarth7/clean-greader
