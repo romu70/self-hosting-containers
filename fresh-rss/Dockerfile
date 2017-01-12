@@ -52,13 +52,14 @@ RUN update-rc.d php7.0-fpm defaults
 
 # ------------------------------------------------------------------------------
 # Install Fresh RSS
-WORKDIR /usr/share
+#WORKDIR /usr/share
+WORKDIR /var/www
 RUN git clone https://github.com/FreshRSS/FreshRSS.git && \
     rm -rf *.md *.pot */*/.empty */.empty .gitignore
-WORKDIR /usr/share/FreshRSS
+WORKDIR /var/www/FreshRSS
 RUN chown -R :www-data . && sudo chmod -R g+r . && sudo chmod -R g+w ./data/
 RUN chmod -R g+w .
-RUN ln -s /usr/share/FreshRSS/p /var/www
+RUN ln -s /var/www/FreshRSS/p /var/www
 
 # ------------------------------------------------------------------------------
 # Expose ports.
