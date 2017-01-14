@@ -20,7 +20,7 @@ RUN apt-get install debconf-utils
 RUN apt-get install -yq nginx fontconfig-config fonts-dejavu-core php7.0-curl php7.0-fpm\
     php7.0-common php7.0-json php7.0-cli php7.0-common php7.0-mysql php7.0-gd php7.0-json\
     php7.0-mcrypt php7.0-readline php7.0-intl php7.0-xml php-apcu php7.0-gmp php7.0-zip\
-    php7.0-mbstring psmisc libgd-tools libmcrypt-dev mcrypt mysql-client supervisor sudo git
+    php7.0-mbstring psmisc libgd-tools libmcrypt-dev mcrypt mysql-client supervisor sudo cron git
 
 # ------------------------------------------------------------------------------
 # Configure Supervisor
@@ -58,7 +58,10 @@ RUN mv FreshRSS/* /var/www
 WORKDIR /var/www/
 RUN chown -R :www-data . && sudo chmod -R g+r . && sudo chmod -R g+w ./data/
 RUN chmod -R g+w .
-# RUN ln -s /var/www/FreshRSS/p /var/www
+
+# ------------------------------------------------------------------------------
+# Setup auto update, feeds are refreshed hourly
+RUN (crontab -u www-data -l; echo "0 * * * * www-data php -f /var/www/app/actualize_script.php > /tmp/FreshRSS.log 2>&1") | crontab -u www-data -
 
 # ------------------------------------------------------------------------------
 # Expose ports.
