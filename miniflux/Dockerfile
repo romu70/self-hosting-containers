@@ -5,6 +5,12 @@
 FROM ubuntu:16.04
 MAINTAINER R. Tisserand <r@tisserand.eu>
 
+ARG DB_HOST
+ARG DB_PORT
+ARG DB_DATABASE
+ARG DB_USER
+ARG DB_PASSWORD
+
 # ------------------------------------------------------------------------------
 # Set the locale
 RUN locale-gen en_US.UTF-8
@@ -55,28 +61,32 @@ RUN update-rc.d php7.0-fpm defaults
 RUN wget https://miniflux.net/miniflux-latest.zip
 RUN unzip miniflux-latest.zip
 RUN mv miniflux/* /var/www
-RUN chown -R www-data:www-data /var/www/data
+RUN chown -R www-data:www-data /var/www
 RUN mv /var/www/config.default.php /var/www/config.default.php_
 ADD conf/config.php /var/www/
+RUN  sed -i -e "s/db-host\s*/$DB_HOST/g" /var/www/config.php\
+  && sed -i -e "s/db-name\s*/$DB_DATABASE/g" /var/www/config.php\
+  && sed -i -e "s/db-user\s*/$DB_USER/g" /var/www/config.php\
+  && sed -i -e "s/db-password\s*/$DB_PASSWORD/g" /var/www/config.php
 
 # ------------------------------------------------------------------------------
 # Install Miniflux Themes
 # installing themes
-#WORKDIR /var/www/themes
-#RUN git clone https://github.com/miniflux/theme-bootstrap-light.git \
-#  && git clone https://github.com/miniflux/theme-bootswatch-cyborg.git \
-#  && git clone https://github.com/miniflux/theme-cards.git \
-#  && git clone https://github.com/miniflux/theme-nostyle.git \
-#  && git clone https://github.com/miniflux/theme-still.git \
-#  && git clone https://github.com/miniflux/theme-green.git \
-#  && git clone https://github.com/miniflux/theme-midnight.git \
-#  && git clone https://github.com/miniflux/theme-copper.git \
-#  && git clone https://github.com/meradoou/hello.git \
-#  && git clone -b flat https://github.com/meradoou/hello.git hello-flat \
-#  && git clone https://github.com/Cygnusfear/Miniflux-Theme-Sun.git \
-#  && rm -rf *.md *.pot */*/.empty */.empty .gitignore
+WORKDIR /var/www/themes
+RUN git clone https://github.com/miniflux/theme-bootstrap-light.git \
+  && git clone https://github.com/miniflux/theme-bootswatch-cyborg.git \
+  && git clone https://github.com/miniflux/theme-cards.git \
+  && git clone https://github.com/miniflux/theme-nostyle.git \
+  && git clone https://github.com/miniflux/theme-still.git \
+  && git clone https://github.com/miniflux/theme-green.git \
+  && git clone https://github.com/miniflux/theme-midnight.git \
+  && git clone https://github.com/miniflux/theme-copper.git \
+  && git clone https://github.com/meradoou/hello.git \
+  && git clone -b flat https://github.com/meradoou/hello.git hello-flat \
+  && git clone https://github.com/Cygnusfear/Miniflux-Theme-Sun.git \
+  && rm -rf *.md *.pot */*/.empty */.empty .gitignore
 
-#RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # ------------------------------------------------------------------------------
 # Expose ports.
