@@ -5,6 +5,7 @@
 FROM ubuntu:16.04
 MAINTAINER R. Tisserand <r@tisserand.eu>
 
+ARG DB_DRIVER
 ARG DB_HOST
 ARG DB_PORT
 ARG DB_DATABASE
@@ -46,8 +47,8 @@ RUN mkdir -p /var/www
 RUN chown www-data:www-data /var/www
 RUN rm /etc/nginx/sites-enabled/*
 RUN rm /etc/nginx/sites-available/*
-RUN sed -i -e"s/keepalive_timeout\s*65/keepalive_timeout 2/" /etc/nginx/nginx.conf
-RUN sed -i -e"s/keepalive_timeout 2/keepalive_timeout 2;\n\tclient_max_body_size 100m/" /etc/nginx/nginx.conf
+#RUN sed -i -e"s/keepalive_timeout\s*65/keepalive_timeout 2/" /etc/nginx/nginx.conf
+#RUN sed -i -e"s/keepalive_timeout 2/keepalive_timeout 2;\n\tclient_max_body_size 100m/" /etc/nginx/nginx.conf
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 ADD conf/miniflux /etc/nginx/sites-enabled/
 
@@ -58,13 +59,16 @@ RUN update-rc.d php7.0-fpm defaults
 
 # ------------------------------------------------------------------------------
 # Install Miniflux
-RUN wget https://miniflux.net/miniflux-latest.zip
-RUN unzip miniflux-latest.zip
-RUN mv miniflux/* /var/www
+ENV VERSION 1.2.1
+RUN wget https://github.com/miniflux/miniflux/archive/v${VERSION}.zip
+RUN unzip v${VERSION}.zip
+RUN mv miniflux-${VERSION}/* /var/www
 RUN chown -R www-data:www-data /var/www
 RUN mv /var/www/config.default.php /var/www/config.default.php_
 ADD conf/config.php /var/www/
-RUN  sed -i -e "s/db-host\s*/$DB_HOST/g" /var/www/config.php\
+RUN  sed -i -e "s/db-driver\s*/$DB_DRIVER/g" /var/www/config.php\
+  && sed -i -e "s/db-host\s*/$DB_HOST/g" /var/www/config.php\
+  && sed -i -e "s/db-port\s*/$DB_PORT/g" /var/www/config.php\
   && sed -i -e "s/db-name\s*/$DB_DATABASE/g" /var/www/config.php\
   && sed -i -e "s/db-user\s*/$DB_USER/g" /var/www/config.php\
   && sed -i -e "s/db-password\s*/$DB_PASSWORD/g" /var/www/config.php
