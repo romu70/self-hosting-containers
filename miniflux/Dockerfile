@@ -5,13 +5,6 @@
 FROM ubuntu:16.04
 MAINTAINER R. Tisserand <r@tisserand.eu>
 
-ARG DB_DRIVER
-ARG DB_HOST
-ARG DB_PORT
-ARG DB_DATABASE
-ARG DB_USER
-ARG DB_PASSWORD
-
 # ------------------------------------------------------------------------------
 # Set the locale
 RUN locale-gen en_US.UTF-8
