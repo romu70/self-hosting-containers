@@ -16,7 +16,7 @@ define('FAVICON_DIRECTORY', DATA_DIRECTORY.DIRECTORY_SEPARATOR.'favicons');
 define('FAVICON_URL_PATH', 'data/favicons');
 
 // Database driver: "sqlite" or "postgres", default is sqlite
-define('DB_DRIVER', 'db-driver');
+define('DB_DRIVER', 'mysql');
 
 // Database connection parameters when Postgres is used
 define('DB_HOSTNAME', 'db-host');
