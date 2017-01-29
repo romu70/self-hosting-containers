@@ -50,20 +50,21 @@ RUN update-rc.d php7.0-fpm defaults
 
 # ------------------------------------------------------------------------------
 # Install Miniflux
+RUN mkdir -p /var/www/p
 ENV VERSION 1.2.1
 RUN wget https://github.com/miniflux/miniflux/archive/v${VERSION}.zip
 RUN unzip v${VERSION}.zip
-RUN mv miniflux-${VERSION}/* /var/www
-RUN mv /var/www/config.default.php /var/www/config.default.php_
-ADD conf/config.php /var/www/
-ADD conf/db-setup.sh /var/www/
-RUN chmod +x /var/www/db-setup.sh
-RUN chown -R www-data:www-data /var/www
+RUN mv miniflux-${VERSION}/* /var/www/p
+RUN mv /var/www/p/config.default.php /var/www/p/config.default.php_
+ADD conf/config.php /var/www/p/
+ADD conf/db-setup.sh /var/www/p/
+RUN chmod +x /var/www/p/db-setup.sh
+RUN chown -R www-data:www-data /var/www/p/
 
 # ------------------------------------------------------------------------------
 # Install Miniflux Themes
 # installing themes
-WORKDIR /var/www/themes
+WORKDIR /var/www/p/themes
 RUN git clone https://github.com/miniflux/theme-bootstrap-light.git \
   && git clone https://github.com/miniflux/theme-bootswatch-cyborg.git \
   && git clone https://github.com/miniflux/theme-cards.git \
