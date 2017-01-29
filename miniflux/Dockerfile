@@ -19,7 +19,7 @@ RUN apt-get update -qq
 RUN apt-get install debconf-utils
 RUN apt-get install -yq nginx php7.0-fpm php7.0-common \
     php7.0-xml php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-mcrypt php7.0-mbstring\
-    php7.0-json php7.0-curl supervisor mysql-client sudo git wget unzip
+    php7.0-json php7.0-curl supervisor mysql-client sudo git wget unzip cron
 RUN apt-get clean
 
 # ------------------------------------------------------------------------------
@@ -79,6 +79,11 @@ RUN git clone https://github.com/miniflux/theme-bootstrap-light.git \
   && rm -rf *.md *.pot */*/.empty */.empty .gitignore
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# ------------------------------------------------------------------------------
+# Setup the CRON job
+#RUN (crontab -u www-data -l; echo "0 * * * * www-data php -f /var/www/app/actualize_script.php > /tmp/FreshRSS.log 2>&1") | crontab -u www-data -
+RUN (crontab -l; echo "0 */4 * * *  cd /var/www/p && php cronjob.php >/dev/null 2>&1") | crontab -
 
 # ------------------------------------------------------------------------------
 # Expose ports.
