@@ -79,10 +79,10 @@ RUN git clone https://github.com/miniflux/theme-bootstrap-light.git \
   && rm -rf *.md *.pot */*/.empty */.empty .gitignore
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+WORKDIR /var/www/p
 
 # ------------------------------------------------------------------------------
 # Setup the CRON job
-#RUN (crontab -u www-data -l; echo "0 * * * * www-data php -f /var/www/app/actualize_script.php > /tmp/FreshRSS.log 2>&1") | crontab -u www-data -
 RUN (crontab -l; echo "0 */4 * * *  cd /var/www/p && php cronjob.php >/dev/null 2>&1") | crontab -
 
 # ------------------------------------------------------------------------------
