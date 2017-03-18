@@ -51,7 +51,7 @@ RUN update-rc.d php7.0-fpm defaults
 # ------------------------------------------------------------------------------
 # Install Miniflux
 RUN mkdir -p /var/www/p
-ENV VERSION 1.2.1
+ENV VERSION 1.2.2
 RUN wget https://github.com/miniflux/miniflux/archive/v${VERSION}.zip
 RUN unzip v${VERSION}.zip
 RUN mv miniflux-${VERSION}/* /var/www/p
