@@ -7,7 +7,7 @@ DB_HOST=$1
 DB_PORT=$2
 DB_USER=$3
 DB_USER_PWD=$4
-APP_SECRET=$4
+APP_SECRET=$5
 
 sed -i -e "s/db-host\s*/$DB_HOST/g" ./app.conf
 sed -i -e "s/db-port\s*/$DB_PORT/g" ./app.conf
