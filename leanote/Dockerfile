@@ -24,19 +24,19 @@ RUN apt-get clean
 
 # ------------------------------------------------------------------------------
 # Install Leanote
-#curl -L http://sourceforge.net/projects/leanote-bin/files/2.4.5/leanote-linux-amd64-v2.4.5.bin.tar.gz/download >> /tmp/leanote.tar.gz
-#RUN mkdir -p /src  /app/src/github.com/leanote \
-#    && tar -xzvf /tmp/leanote.tar.gz -C /src \
-#    && ln -s /src/leanote/bin/src/github.com/revel /app/src/github.com/revel \
-#    && ln -s /src/leanote /app/src/github.com/leanote/leanote \
-#    && ln -s /src/leanote/bin/leanote-linux-amd64 /app/leanote-linux-amd64 \
-#    && rm /tmp/leanote.tar.gz
+RUN curl -L http://sourceforge.net/projects/leanote-bin/files/2.4.5/leanote-linux-amd64-v2.4.5.bin.tar.gz/download >> /tmp/leanote.tar.gz
+RUN mkdir -p /src  /app/src/github.com/leanote \
+    && tar -xzvf /tmp/leanote.tar.gz -C /src \
+    && ln -s /src/leanote/bin/src/github.com/revel /app/src/github.com/revel \
+    && ln -s /src/leanote /app/src/github.com/leanote/leanote \
+    && ln -s /src/leanote/bin/leanote-linux-amd64 /app/leanote-linux-amd64 \
+    && rm /tmp/leanote.tar.gz
 
 # ------------------------------------------------------------------------------
 # Expose ports.
-#EXPOSE 9000
+EXPOSE 9000
 
 # ------------------------------------------------------------------------------
 WORKDIR  /app
-#CMD ["/app/leanote-linux-amd64","-importPath","github.com/leanote/leanote"]
+CMD ["/app/leanote-linux-amd64","-importPath","github.com/leanote/leanote"]
 
