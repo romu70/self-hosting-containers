@@ -31,12 +31,16 @@ RUN mkdir -p /src  /app/src/github.com/leanote \
     && ln -s /src/leanote /app/src/github.com/leanote/leanote \
     && ln -s /src/leanote/bin/leanote-linux-amd64 /app/leanote-linux-amd64 \
     && rm /tmp/leanote.tar.gz
+RUN chmod +x /app/src/github.com/leanote/leanote/bin/run.sh
 
 # ------------------------------------------------------------------------------
 # Expose ports.
 EXPOSE 9000
 
 # ------------------------------------------------------------------------------
-WORKDIR  /app
-CMD ["/app/leanote-linux-amd64","-importPath","github.com/leanote/leanote"]
+#WORKDIR  /app
+WORKDIR  /app/src/github.com/leanote/leanote/bin
+
+#CMD ["/app/leanote-linux-amd64","-importPath","github.com/leanote/leanote"]
+ENTRYPOINT ["sh", "run.sh"]
 
