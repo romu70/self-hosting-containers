@@ -18,7 +18,7 @@ ENV GOPATH /app
 
 # ------------------------------------------------------------------------------
 RUN apt-get update -qq
-RUN apt-get install debconf-utils
+RUN apt-get install curl debconf-utils
 RUN apt-get clean
 
 # ------------------------------------------------------------------------------
