@@ -38,9 +38,9 @@ RUN chmod +x /app/src/github.com/leanote/leanote/bin/run.sh
 EXPOSE 9000
 
 # ------------------------------------------------------------------------------
-#WORKDIR  /app
-WORKDIR  /app/src/github.com/leanote/leanote/bin
+WORKDIR  /app
+#WORKDIR  /app/src/github.com/leanote/leanote/bin
 
-#CMD ["/app/leanote-linux-amd64","-importPath","github.com/leanote/leanote"]
-ENTRYPOINT ["sh", "run.sh"]
+CMD ["/app/leanote-linux-amd64","-importPath","github.com/leanote/leanote"]
+#ENTRYPOINT ["sh", "run.sh"]
 
