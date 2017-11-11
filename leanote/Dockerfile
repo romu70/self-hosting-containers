@@ -24,7 +24,7 @@ RUN apt-get clean
 
 # ------------------------------------------------------------------------------
 # Install Leanote
-RUN curl -L https://sourceforge.net/projects/leanote-bin/files/2.5/leanote-linux-amd64-v2.5.bin.tar.gz/download >> /tmp/leanote.tar.gz
+RUN curl -L https://sourceforge.net/projects/leanote-bin/files/1.4.2/leanote-linux-amd64-v1.4.2.bin.tar.gz/download >> /tmp/leanote.tar.gz
 RUN mkdir -p /src  /app/src/github.com/leanote \
     && tar -xzvf /tmp/leanote.tar.gz -C /src \
     && ln -s /src/leanote/bin/src/github.com/revel /app/src/github.com/revel \
