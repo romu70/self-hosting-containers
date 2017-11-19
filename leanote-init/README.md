@@ -4,5 +4,5 @@ Container to store the Leanote initial data within your MongoDB instance. Taken 
 
 Usage:
 
-docker run --rm -e MONGO_HOST -e MONGO_PORT -e LEANOTE_DB -e MONGO_USER -e MONGO_PWD
+```docker run --rm -e MONGO_HOST -e MONGO_PORT -e LEANOTE_DB -e MONGO_USER -e MONGO_PWD```
 
