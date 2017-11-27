@@ -39,8 +39,6 @@ EXPOSE 9000
 
 # ------------------------------------------------------------------------------
 WORKDIR  /app
-#WORKDIR  /app/src/github.com/leanote/leanote/bin
 
 CMD ["/app/leanote-linux-amd64","-importPath","github.com/leanote/leanote"]
-#ENTRYPOINT ["sh", "run.sh"]
 
