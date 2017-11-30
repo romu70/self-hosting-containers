@@ -1,4 +1,4 @@
-# [Pydio](https://www.pydio.com/)
+# [Pydio](https://www.pydio.com/) Deprecated
 
 Image to install and run the community edition of Pydio, current version: 7.0.2.
 
