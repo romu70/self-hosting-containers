@@ -12,7 +12,7 @@ Some projects I use for self-hosting relie on MongoDB. So here are some instruct
 
 ```docker run --name mongo-3.4.10 -v mongo:/data/db -p 27017:27017 -d mongo:3.4.10 --auth```
 
-4. Setup authentication
+4. Create the admin account
 
 ```
 $ docker exec -it mongo-3.4.10 /bin/sh
@@ -22,3 +22,19 @@ connecting to: admin
 > exit
 ```
 
+5. Create a database
+
+```
+$ docker exec -it mongo-3.4.10 /bin/sh
+# mongo admin -u root -p 'blablabla'
+connecting to: admin
+> use mynewdb
+```
+
+5. Create the new user account
+
+```
+> db.createUser({ user: 'mynewuser', pwd: 'blobloblo', roles: [ { role: "readWrite", db: "mynewdb" }, {role: "dbAdmin", db: "mynewdb"} ] });
+```
+
+This way, the newly created account can admin but also read and write data.
