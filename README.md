@@ -1,6 +1,6 @@
 # Introduction
 
-This repository contains stuff for self-hosting. Slef hosting of services is based on Docker containers, and I assume you have access to a MySQL/MariaDB database server (which can be a Docker container as well but in my case it's run by the physical server).
+This repository contains stuff for self-hosting. Self hosting of services is based on Docker containers, and I assume you have access to a MySQL/MariaDB database server (which can be a Docker container as well but in my case it's run by the physical server).
 
 This repository doesn't deal with SSL, certificates etc. My own server already provides a nice GUI to setup SSL reverse proxy and Let's Encrypt certificates, but feel free security related stuff.
 
@@ -16,8 +16,10 @@ Here is a list of services I run:
 
 [Miniflux](https://www.miniflux.net/)
 
-[Tiny Tiny RSS](https://tt-rss.org/gitlab/fox/tt-rss/wikis/home)
+[Leanote](https://www.leanote.org/)
 
-[Pydio](https://www.pydio.com/)
+[Tiny Tiny RSS](https://tt-rss.org/gitlab/fox/tt-rss/wikis/home) - Deprecated, I don't use it'
+
+[Pydio](https://www.pydio.com/) - Deprecated, I don't use it
 
 
