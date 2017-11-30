@@ -1,4 +1,4 @@
-# [Tiny Tiny RSS](https://www.tt-rss.org/)
+# [Tiny Tiny RSS](https://www.tt-rss.org/ Deprecated)
 
 tt-rss is installed with the fllowing plugins:
 - [Wallabag v2](https://github.com/joshp23/ttrss-to-wallabag-v2)
