@@ -20,7 +20,5 @@ $ docker exec -it mongo-3.4.10 /bin/sh
 connecting to: admin
 > db.createUser({ user: 'root', pwd: 'blablabla', roles: [ { role: "userAdminAnyDatabase", db: "admin" } ] });
 > exit
-
-# mongo admin -u root -p 'blablabla'
 ```
 
