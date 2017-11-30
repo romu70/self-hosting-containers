@@ -31,10 +31,14 @@ connecting to: admin
 > use mynewdb
 ```
 
-5. Create the new user account
+6. Create the new user account
 
 ```
 > db.createUser({ user: 'mynewuser', pwd: 'blobloblo', roles: [ { role: "readWrite", db: "mynewdb" }, {role: "dbAdmin", db: "mynewdb"} ] });
 ```
 
 This way, the newly created account can admin but also read and write data.
+
+7. Exit
+
+Once the DB and the user created, you can exit the container.
