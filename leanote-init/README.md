@@ -1,6 +1,6 @@
 # [Leanote-init](http://leanote.org/)
 
-Container to store the Leanote initial data within your MongoDB instance. Taken from https://github.com/hannah98/docker-leanote-populatedb
+Container to store the Leanote initial data within your [MongoDB](https://github.com/romu70/self-hosting-containers/tree/master/mongodb) instance. Taken from https://github.com/hannah98/docker-leanote-populatedb
 
 Usage:
 
