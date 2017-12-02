@@ -1,6 +1,6 @@
 # [MongoDB](https://www.mongodb.com/)
 
-Some projects I use for self-hosting relie on MongoDB. So here are some instructions to get a proper setup.
+Some projects I use for self-hosting use MongoDB as data back-end. So here are some instructions to get a proper setup.
 
 1. Take the MongoDB provided in the Docker hub ()
 
