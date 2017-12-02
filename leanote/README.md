@@ -4,7 +4,7 @@ Docker setup to run Leanote. It uses an extenal MongoDB data back end. It curren
 
 1. Setup a [MongoDB](https://github.com/romu70/self-hosting-containers/tree/master/mongodb) instance
 2. Populate the MongoDB instance with [initial Leanote data](https://github.com/romu70/self-hosting-containers/tree/master/leanote-init)
-3. Setup the Leanote app.conf file, open a terminal with the conf folder and run:
+3. Setup the Leanote app.conf file, open a terminal within the conf folder and run:
 
 ```
 ./db-setup.sh IP_MONGO_DB PORT_MONGO_DB MONGO_USER MONGO_USER_PWD APP_SECRET IP_LEANOTE PORT_LEANOTE
