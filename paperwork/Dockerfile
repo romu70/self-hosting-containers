@@ -65,7 +65,7 @@ RUN chown www-data:www-data -R /var/www/
 # ------------------------------------------------------------------------------
 # Install NPM
 WORKDIR /var/www/paperwork/frontend/
-RUN wget https://www.npmjs.org/install.sh
+RUN wget https://www.npmjs.com/install.sh
 RUN bash ./install.sh
 RUN npm install -g gulp bower
 RUN npm install
