@@ -18,7 +18,7 @@ RUN dpkg-reconfigure -f noninteractive tzdata
 RUN apt-get update -qq
 RUN apt-get install debconf-utils
 RUN apt-get install -yq php7.0-mysql git nginx php7.0-fpm curl wget git php7.0-cli\
-            supervisor php7.0-gd php7.0-mcrypt nodejs nodejs-legacy php7.0-xml zip\
+            supervisor php7.0-gd php7.0-mcrypt nodejs php7.0-xml zip\
             unzip
 RUN apt-get clean
 
