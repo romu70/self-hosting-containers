@@ -18,7 +18,7 @@ RUN dpkg-reconfigure -f noninteractive tzdata
 RUN apt-get update -qq
 RUN apt-get install debconf-utils
 RUN apt-get install -yq php7.0-mysql git nginx php7.0-fpm curl wget git php7.0-cli\
-            supervisor php7.0-gd php7.0-mcrypt nodejs php7.0-xml zip\
+            supervisor php7.0-gd php7.0-mcrypt nodejs npm php7.0-xml zip\
             unzip
 RUN apt-get clean
 
@@ -65,8 +65,8 @@ RUN chown www-data:www-data -R /var/www/
 # ------------------------------------------------------------------------------
 # Install NPM
 WORKDIR /var/www/paperwork/frontend/
-RUN wget https://www.npmjs.com/install.sh
-RUN bash ./install.sh
+#RUN wget https://www.npmjs.com/install.sh
+#RUN bash ./install.sh
 RUN npm install -g gulp bower
 RUN npm install
 RUN bower install --allow-root
