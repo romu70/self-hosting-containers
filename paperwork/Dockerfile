@@ -6,6 +6,14 @@ FROM ubuntu:16.04
 MAINTAINER R. Tisserand <r@tisserand.eu>
 
 # ------------------------------------------------------------------------------
+RUN apt-get update -qq
+RUN apt-get install debconf-utils
+RUN apt-get install -yq php7.0-mysql git nginx php7.0-fpm curl wget git php7.0-cli\
+            supervisor php7.0-gd php7.0-mcrypt nodejs nodejs-legacy npm php7.0-xml zip\
+            unzip locales
+RUN apt-get clean
+
+# ------------------------------------------------------------------------------
 # Set the locale
 RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
@@ -13,14 +21,6 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 RUN echo "Europe/Paris" > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
-
-# ------------------------------------------------------------------------------
-RUN apt-get update -qq
-RUN apt-get install debconf-utils
-RUN apt-get install -yq php7.0-mysql git nginx php7.0-fpm curl wget git php7.0-cli\
-            supervisor php7.0-gd php7.0-mcrypt nodejs npm php7.0-xml zip\
-            unzip
-RUN apt-get clean
 
 # ------------------------------------------------------------------------------
 # Configure Supervisor
@@ -53,7 +53,7 @@ RUN mv composer.phar /usr/local/bin/composer
 # ------------------------------------------------------------------------------
 # Install Paperwork
 WORKDIR /var/www
-RUN git clone https://github.com/twostairs/paperwork.git
+RUN git clone --depth 1 https://github.com/twostairs/paperwork.git
 WORKDIR /var/www/paperwork/frontend/
 RUN composer install
 #RUN mv ./app/storage/config/default_database.json ./app/storage/config/default_database.json.backup 
