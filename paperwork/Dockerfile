@@ -56,10 +56,10 @@ WORKDIR /var/www
 RUN git clone --depth 1 https://github.com/twostairs/paperwork.git
 WORKDIR /var/www/paperwork/frontend/
 RUN composer install
-#RUN mv ./app/storage/config/default_database.json ./app/storage/config/default_database.json.backup 
-#ADD conf/default_database.json ./app/storage/config
-#ADD conf/db-setup.sh /var/www/paperwork/frontend/
-#RUN chmod +x /var/www/paperwork/frontend/db-setup.sh
+RUN mv ./app/storage/config/default_database.json ./app/storage/config/default_database.json.backup 
+ADD conf/default_database.json ./app/storage/config
+ADD conf/db-setup.sh /var/www/paperwork/frontend/
+RUN chmod +x /var/www/paperwork/frontend/db-setup.sh
 RUN chown www-data:www-data -R /var/www/
 
 # ------------------------------------------------------------------------------
