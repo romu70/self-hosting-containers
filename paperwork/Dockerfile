@@ -60,8 +60,8 @@ RUN mv ./app/storage/config/default_database.json ./app/storage/config/default_d
 RUN mv ./app/storage/config/default_paperwork.json ./app/storage/config/paperwork.json 
 RUN echo "8" >> ./app/storage/config/setup
 ADD conf/database.json ./app/storage/config
-ADD conf/db-setup.sh ./app/storage/config
-RUN chmod +x /var/www/paperwork/frontend/app/storage/config/db-setup.sh
+ADD conf/db-setup.sh ./
+RUN chmod +x /var/www/paperwork/frontend/db-setup.sh
 RUN chown www-data:www-data -R /var/www/
 
 # ------------------------------------------------------------------------------
