@@ -27,6 +27,6 @@ docker exec -t -i paperwork /bin/bash
 ./db-setup.sh db-host db-port db-database db-user db-user-password
 ```
 
-Of course, you need to change the value to suit your needs and preferences.
+Of course, you need to change the values to suit your needs and preferences.
 
 Enjoy!
