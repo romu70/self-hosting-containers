@@ -1,4 +1,4 @@
-# [Paperwork](http://paperwork.rocks/) Deprecated
+# [Paperwork](http://paperwork.rocks/)
 
 Docker setup to run Paperwork. It will use an external MariaDB/MySQL data back end.
 
