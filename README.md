@@ -16,7 +16,11 @@ Here is a list of services I run:
 
 [Miniflux](https://www.miniflux.net/)
 
-[Leanote](https://www.leanote.org/)
+[NextCloud](https://www.nextcloud.com/)
+
+[Paperwork](https://www.paperwork.rocks/)
+
+[Leanote](https://www.leanote.org/) - Deprecated, I don't use it
 
 [Tiny Tiny RSS](https://tt-rss.org/gitlab/fox/tt-rss/wikis/home) - Deprecated, I don't use it'
 
