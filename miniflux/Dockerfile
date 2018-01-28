@@ -6,6 +6,14 @@ FROM ubuntu:16.04
 MAINTAINER R. Tisserand <r@tisserand.eu>
 
 # ------------------------------------------------------------------------------
+RUN apt-get update -qq
+RUN apt-get install debconf-utils
+RUN apt-get install -yq nginx php7.0-fpm php7.0-common \
+    php7.0-xml php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-mcrypt php7.0-mbstring\
+    php7.0-json php7.0-curl supervisor mysql-client sudo git wget unzip cron locales
+RUN apt-get clean
+
+# ------------------------------------------------------------------------------
 # Set the locale
 RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
@@ -13,14 +21,6 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 RUN echo "Europe/Paris" > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
-
-# ------------------------------------------------------------------------------
-RUN apt-get update -qq
-RUN apt-get install debconf-utils
-RUN apt-get install -yq nginx php7.0-fpm php7.0-common \
-    php7.0-xml php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-mcrypt php7.0-mbstring\
-    php7.0-json php7.0-curl supervisor mysql-client sudo git wget unzip cron
-RUN apt-get clean
 
 # ------------------------------------------------------------------------------
 # Configure Supervisor
@@ -51,10 +51,10 @@ RUN update-rc.d php7.0-fpm defaults
 # ------------------------------------------------------------------------------
 # Install Miniflux
 RUN mkdir -p /var/www/p
-ENV VERSION 1.2.3
-RUN wget https://github.com/miniflux/miniflux/archive/v${VERSION}.zip
+ENV VERSION 1.2.4
+RUN wget https://github.com/miniflux/miniflux-legacy/archive/v${VERSION}.zip
 RUN unzip v${VERSION}.zip
-RUN mv miniflux-${VERSION}/* /var/www/p
+RUN mv miniflux-legacy-${VERSION}/* /var/www/p
 RUN mv /var/www/p/config.default.php /var/www/p/config.default.php_
 ADD conf/config.php /var/www/p/
 ADD conf/db-setup.sh /var/www/p/
@@ -66,17 +66,7 @@ RUN chown -R www-data:www-data /var/www/p/
 # installing themes
 WORKDIR /var/www/p/themes
 RUN git clone https://github.com/miniflux/theme-bootstrap-light.git \
-  && git clone https://github.com/miniflux/theme-bootswatch-cyborg.git \
-  && git clone https://github.com/miniflux/theme-cards.git \
-  && git clone https://github.com/miniflux/theme-nostyle.git \
-  && git clone https://github.com/miniflux/theme-still.git \
-  && git clone https://github.com/miniflux/theme-green.git \
-  && git clone https://github.com/miniflux/theme-midnight.git \
-  && git clone https://github.com/miniflux/theme-copper.git \
-  && git clone https://github.com/meradoou/hello.git \
-  && git clone -b flat https://github.com/meradoou/hello.git hello-flat \
-  && git clone https://github.com/Cygnusfear/Miniflux-Theme-Sun.git \
-  && rm -rf *.md *.pot */*/.empty */.empty .gitignore
+  && git clone https://github.com/miniflux/theme-midnight.git
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 WORKDIR /var/www/p
