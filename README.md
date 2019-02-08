@@ -18,7 +18,7 @@ Here is a list of services I run:
 
 [NextCloud](https://www.nextcloud.com/)
 
-[Paperwork](https://www.paperwork.rocks/)
+[Paperwork](https://www.paperwork.rocks/) - Deprecated, I don't use it
 
 [Leanote](https://www.leanote.org/) - Deprecated, I don't use it
 
