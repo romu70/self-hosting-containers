@@ -1,0 +1,23 @@
+ALTER SEQUENCE wallabag_annotation_id_seq RENAME TO annotation_id_seq;
+ALTER SEQUENCE wallabag_config_id_seq RENAME TO config_id_seq;
+ALTER SEQUENCE wallabag_entry_id_seq RENAME TO entry_id_seq;
+ALTER SEQUENCE wallabag_oauth2_access_tokens_id_seq RENAME TO oauth2_access_tokens_id_seq;
+ALTER SEQUENCE wallabag_oauth2_auth_codes_id_seq RENAME TO oauth2_auth_codes_id_seq;
+ALTER SEQUENCE wallabag_oauth2_clients_id_seq RENAME TO oauth2_clients_id_seq;
+ALTER SEQUENCE wallabag_oauth2_refresh_tokens_id_seq RENAME TO oauth2_refresh_tokens_id_seq;
+ALTER SEQUENCE wallabag_site_credential_id_seq RENAME TO credential_id_seq;
+ALTER SEQUENCE wallabag_tag_id_seq RENAME TO tag_id_seq;
+ALTER SEQUENCE wallabag_tagging_rule_id_seq RENAME TO tagging_rule_id_seq;
+ALTER SEQUENCE wallabag_user_id_seq RENAME TO user_id_seq;
+
+ALTER TABLE wallabag_annotation ALTER COLUMN id SET DEFAULT nextval('annotation_id_seq'::regclass);
+ALTER TABLE wallabag_config ALTER COLUMN id SET DEFAULT nextval('config_id_seq'::regclass);
+ALTER TABLE wallabag_entry ALTER COLUMN id SET DEFAULT nextval('entry_id_seq'::regclass);
+ALTER TABLE wallabag_oauth2_access_tokens ALTER COLUMN id SET DEFAULT nextval('oauth2_access_tokens_id_seq'::regclass);
+ALTER TABLE wallabag_oauth2_auth_codes ALTER COLUMN id SET DEFAULT nextval('oauth2_auth_codes_id_seq'::regclass);
+ALTER TABLE wallabag_oauth2_clients ALTER COLUMN id SET DEFAULT nextval('oauth2_clients_id_seq'::regclass);
+ALTER TABLE wallabag_oauth2_refresh_tokens ALTER COLUMN id SET DEFAULT nextval('oauth2_refresh_tokens_id_seq'::regclass);
+ALTER TABLE wallabag_site_credential ALTER COLUMN id SET DEFAULT nextval('credential_id_seq'::regclass);
+ALTER TABLE wallabag_tag ALTER COLUMN id SET DEFAULT nextval('tag_id_seq'::regclass);
+ALTER TABLE wallabag_tagging_rule ALTER COLUMN id SET DEFAULT nextval('tagging_rule_id_seq'::regclass);
+ALTER TABLE wallabag_user ALTER COLUMN id SET DEFAULT nextval('user_id_seq'::regclass);
